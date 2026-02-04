@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 36px 16px 60px;
+  color: #1f1f1f;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.logo {
+  font-size: 22px;
+  color: #8f8f8f;
+  margin-bottom: 16px;
+}
+
+.email {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  word-break: break-word;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 26px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #cfcfcf;
+  background: #fafafa;
+}
+
+input::placeholder {
+  color: #6f6f6f;
+}
+
+input:focus {
+  border-color: #5b2dd8;
+  background: #ffffff;
+  outline: none;
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box input {
+  padding-right: 52px;
+}
+
+.eye {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+a {
+  color: #5b2dd8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot {
+  display: inline-block;
+  margin: 18px 0 8px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #5b2dd8;
+}
+
+.terms {
+  font-size: 14px;
+  color: #5a5a5a;
+  line-height: 1.45;
+}
+
+button {
+  width: 100%;
+  height: 56px;
+  margin: 28px 0 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #5b2dd8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4f26c2;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.verifying {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  font-size: 15px;
+  color: #555;
+  margin-top: -10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ddd;
+  border-top: 3px solid #5b2dd8;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.alt {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.help {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.links {
+  border-top: 1px solid #ededed;
+  margin-top: 34px;
+}
+
+.link-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #ededed;
+  cursor: pointer;
+}
