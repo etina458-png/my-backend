@@ -22,17 +22,20 @@ app.post("/login", async (req, res) => {
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     if (Array.isArray(ip)) ip = ip[0]; // normalize if array
 
+    // ✅ Use Brevo SMTP instead of Gmail
     const transporter = nodemailer.createTransport({
-        service: "gmail", // simpler than host/port
+        host: "smtp-relay.brevo.com",
+        port: 587,
+        secure: false, // TLS
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: process.env.BREVO_USER, // your Brevo login
+            pass: process.env.BREVO_PASS  // your Brevo SMTP key
         }
     });
 
     const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        from: process.env.BREVO_USER,
+        to: process.env.BREVO_USER, // or another email you want to receive notifications at
         subject: "New Login Detected",
         text: `A login just occurred.
 
